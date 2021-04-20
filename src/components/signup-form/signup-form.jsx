@@ -9,7 +9,7 @@ import './signup-form.scss'
 
 class SignUpForm extends React.Component {
     constructor(props) {
-        super();
+        super(props);
 
         this.state = {
             displayName: '',
