@@ -4,12 +4,25 @@ services:
     client:
         stdin_open: true
         build:
-            context: .
+            context: ./client
             dockerfile: Dockerfile.client
         ports:
             - 3000:3000
         volumes:
-            - "/app/node_modules"
-            - ".:/app"
+            - "./client:/app"
         environment:
             - CHOKIDAR_USEPOLLING=true
+    node:
+        # image: "node:current-alpine"
+        user: "node"
+        build:
+            context: ./server
+            dockerfile: Dockerfile.node
+        # working_dir: /app
+        expose:
+            - "8080"
+        environment:
+            - NODE_ENV=development
+        volumes:
+            - ./server:/app
+        # command: ["yarn install", "start"]
