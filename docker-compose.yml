@@ -2,27 +2,27 @@ version: '3.7'
 
 services:
     client:
+        # image: "node:current-alpine"
         stdin_open: true
         build:
             context: ./client
             dockerfile: Dockerfile.client
+        working_dir: /app
         ports:
             - 3000:3000
         volumes:
+            - "/app/node_modules"
             - "./client:/app"
         environment:
             - CHOKIDAR_USEPOLLING=true
+        # command: ["yarn", "run", "start"]
     node:
-        # image: "node:current-alpine"
-        user: "node"
         build:
-            context: ./server
-            dockerfile: Dockerfile.node
-        # working_dir: /app
-        expose:
-            - "8080"
-        environment:
-            - NODE_ENV=development
+          context: ./server
+          dockerfile: Dockerfile.node
+        ports:
+          - "5000:5000"
+        container_name: node
         volumes:
-            - ./server:/app
-        # command: ["yarn install", "start"]
+           - ./server:/usr/src/app
+           - /usr/src/app/node_modules
