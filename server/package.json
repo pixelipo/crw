@@ -1,0 +1,22 @@
+{
+  "name": "node-backend",
+  "version": "1.0.0",
+  "description": "example project react with nodejs",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.bundle.js",
+    "build": "webpack",
+    "dev": "yarn nodemon server.js localhost 5000"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "body-parser": "^1.18.3",
+    "compression": "1.7.4",
+    "dotenv": "7.0.0",
+    "stripe": "6.28.0"
+  },
+  "devDependencies": {
+      "concurrently": "^4.0.1",
+      "nodemon": "^1.19.1"
+  }
+}
