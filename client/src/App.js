@@ -15,7 +15,7 @@ import CurrentUserContext from './contexts/current-user/current-user';
 import {auth, createUserProfileDocument} from './firebase/firebase.utils';
 
 const App = () => {
-    const [currentUser, setCurrentUser] = useState(undefined);
+    const [currentUser, setCurrentUser] = useState(CurrentUserContext);
 
     useEffect(() => {
         const unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
@@ -39,17 +39,17 @@ const App = () => {
 
     return (
         <div>
-            <CurrentUserContext.Provider value={{currentUser}}>
+            <CurrentUserContext.Provider value={currentUser}>
                 <Header />
             </CurrentUserContext.Provider>
-                <Switch>
-                    <Route exact path='/' component={HomePage} />
-                    <Route path='/shop' component={ShopPage} />
-                    <Route exact path='/checkout' component={CheckoutPage} />
-                    <Route exact path='/signin' render={() =>
-                        currentUser ? <Redirect to='/' /> : <SignInPage />
-                    } />
-                </Switch>
+            <Switch>
+                <Route exact path='/' component={HomePage} />
+                <Route path='/shop' component={ShopPage} />
+                <Route exact path='/checkout' component={CheckoutPage} />
+                <Route exact path='/signin' render={() =>
+                    currentUser ? <Redirect to='/' /> : <SignInPage />
+                } />
+            </Switch>
         </div>
     );
 }
