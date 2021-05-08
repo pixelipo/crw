@@ -1,14 +1,16 @@
-import React, {useContext} from 'react';
+import { useReactiveVar } from '@apollo/client';
 
-import {CartContext} from '../../providers/cart/cart.provider';
+import { cartHiddenVar, cartItemsVar } from '../../graphql/cache';
+import { getCartCount } from '../../graphql/cart.utils';
 
 import './cart.scss'
 
 const CartIcon = ({primary}) => {
-    const {toggleHidden, itemCount} = useContext(CartContext);
+    const cartItems = useReactiveVar(cartItemsVar);
+    const itemCount = getCartCount(cartItems);
 
     return (
-        <div className='cart-icon' onClick={toggleHidden}>
+        <div className='cart-icon' onClick={() => cartHiddenVar(!cartHiddenVar())}>
             <svg version="1.1" className="shopping-icon" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 407.45 407.45">
                 <path d="M255.1 116.52c4.49 0 8.13-3.63 8.13-8.13 0-4.49-3.64-8.13-8.13-8.13H143.49c-4.49 0-8.13 3.63-8.13 8.13 0 4.5 3.64 8.13 8.13 8.13H255.1z" fill={primary}/>
                 <path d="M367.06 100.26H311.69c-4.49 0-8.13 3.63-8.13 8.13 0 4.5 3.64 8.13 8.13 8.13h47.24v274.68H48.52V116.52h44.54c4.49 0 8.13-3.63 8.13-8.13 0-4.49-3.64-8.13-8.13-8.13H40.39c-4.49 0-8.13 3.63-8.13 8.13v290.94c0 4.5 3.64 8.13 8.13 8.13h326.67c4.49 0 8.13-3.63 8.13-8.13V108.39C375.19 103.89 371.56 100.26 367.06 100.26z" fill={primary}/>
