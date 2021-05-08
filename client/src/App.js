@@ -8,7 +8,7 @@ import ShopPage from './pages/shop/shop';
 import SignInPage from './pages/signin/signin';
 import CheckoutPage from './pages/checkout/checkout';
 
-import Header from './components/header/header';
+import {default as Header} from './components/header/header';
 
 import CurrentUserContext from './contexts/current-user/current-user';
 

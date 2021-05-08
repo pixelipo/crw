@@ -1,15 +1,17 @@
-import React, {useContext} from 'react';
-import {withRouter} from 'react-router-dom';
+import React from 'react';
+import { withRouter } from 'react-router-dom';
+import { useReactiveVar } from '@apollo/client';
+
+import { cartHiddenVar, cartItemsVar } from '../../graphql/cache';
 
 import Button from '../button/button';
 import CartItem from '../cart-item/cart-item';
 
-import {CartContext} from '../../providers/cart/cart.provider';
-
 import './cart-dropdown.scss';
 
+
 const CartDropdown = ({history}) => {
-    const {cartItems, toggleHidden} = useContext(CartContext);
+    const cartItems = useReactiveVar(cartItemsVar);
 
     return (
     <div className='cart-dropdown'>
@@ -24,7 +26,7 @@ const CartDropdown = ({history}) => {
         </div>
         <Button onClick={() => {
             history.push('/checkout');
-            toggleHidden();
+            cartHiddenVar(!cartHiddenVar());
         }}>
             Go to checkout
         </Button>

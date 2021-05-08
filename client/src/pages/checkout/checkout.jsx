@@ -1,14 +1,17 @@
-import React, {useContext} from 'react';
+import React from 'react';
+import { useReactiveVar } from '@apollo/client';
 
 import CheckoutItem from '../../components/checkout-item/checkout-item';
 import StripeCheckoutButton from '../../components/stripe-button/stripe-button';
 
-import {CartContext} from '../../providers/cart/cart.provider';
+import { cartItemsVar } from '../../graphql/cache';
+import { getCartTotal } from '../../graphql/cart.utils';
 
 import './checkout.scss';
 
 const CheckoutPage = () => {
-    const {cartItems, totalSum} = useContext(CartContext);
+    const cartItems = useReactiveVar(cartItemsVar);
+    const totalSum = getCartTotal(cartItems);
 
     return (
         <div className='checkout-page'>

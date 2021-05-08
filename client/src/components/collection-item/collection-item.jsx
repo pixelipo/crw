@@ -1,14 +1,15 @@
-import React, {useContext} from 'react';
+import React from 'react';
 
-import {CartContext} from '../../providers/cart/cart.provider';
+import { cartItemsVar } from '../../graphql/cache';
+import { addItem } from '../../graphql/cart.utils';
 
 import Button from '../button/button';
 
 import './collection-item.scss'
 
+
 const CollectionItem = ({item}) => {
     const {name, price, imageUrl} = item;
-    const {addItem} = useContext(CartContext);
 
     return (
         <div className='collection-item'>
@@ -20,7 +21,7 @@ const CollectionItem = ({item}) => {
                 <span className='name'>{name}</span>
                 <span className='price'>{price}</span>
             </div>
-            <Button onClick={() => addItem(item)} styler='inverted'>
+            <Button onClick={() => cartItemsVar(addItem(cartItemsVar(), item))} styler='inverted'>
                 Add to cart
             </Button>
         </div>
