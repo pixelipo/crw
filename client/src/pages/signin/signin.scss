@@ -1,6 +1,17 @@
 .sign-in-wrapper {
-    width: 850px;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 25px;
     justify-content: space-between;
     margin: 30px auto;
+    transition: margin 0.25s ease;
+
+    @media screen and (min-width: 850px) {
+        grid-template-columns: 1fr 1fr;
+        transition: margin 0.25s ease;
+    }
+
+    > div {
+        margin: 0 auto;
+    }
 }

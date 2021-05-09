@@ -3,7 +3,13 @@
 }
 body {
     font-family: 'Open Sans Condensed', sans-serif;
-    padding: 20px 60px;
+    padding: 10px;
+    transition: all 0.25s ease;
+
+    @media screen and (min-width: 780px) {
+        padding: 20px 60px;
+        transition: all 0.25s ease;
+    }
 }
 
 p, h1 {

@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {Switch, Route, Redirect} from 'react-router-dom';
 
-import './App.css';
+import './App.scss';
 
 import HomePage from './pages/homepage/homepage';
 import ShopPage from './pages/shop/shop';
