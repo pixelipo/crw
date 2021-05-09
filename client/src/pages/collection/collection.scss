@@ -9,8 +9,13 @@
 
     .items {
         display: grid;
-        grid-template-columns:  1fr 1fr 1fr 1fr;
+        grid-template-columns:  1fr 1fr;
         grid-gap: 10px;
+
+        @media screen and (min-width: 780px) {
+            grid-template-columns:  1fr 1fr 1fr 1fr;
+            transition: all 0.25s ease;
+        }
 
         &.collection-item {
             margin-bottom: 30px;
