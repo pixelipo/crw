@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import {Link} from 'react-router-dom';
 import {auth} from '../../firebase/firebase.utils';
-import {useReactiveVar} from '@apollo/client';
+import {gql, useQuery} from '@apollo/client';
 
 import CrownIcon from '../icons/crown';
 import CartIcon from '../icons/cart';
@@ -12,10 +12,15 @@ import CurrentUserContext from '../../contexts/current-user/current-user';
 
 import './header.scss';
 
+const GET_CART_HIDDEN = gql`
+    query getCartHidden {
+        cartHidden @client
+    }
+`;
 
 const Header = () => {
     const currentUser = useContext(CurrentUserContext);
-    const hidden = useReactiveVar(cartHiddenVar);
+    const {data} = useQuery(GET_CART_HIDDEN);
 
     return (
         <div className='header'>
@@ -30,7 +35,7 @@ const Header = () => {
                 )}
                 <CartIcon primary='#808282' />
             </div>
-            {hidden ? null : <CartDropdown />}
+            {data.cartHidden ? null : <CartDropdown />}
         </div>
     );
 };
