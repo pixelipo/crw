@@ -8,6 +8,6 @@ const HomePage = () => (
     <div className='homepage'>
         <DirectoryMenu />
     </div>
-)
+);
 
 export default HomePage;

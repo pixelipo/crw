@@ -5,6 +5,7 @@ import './App.scss';
 
 import {default as Header} from './components/header/header';
 import Spinner from './components/spinner/spinner';
+import ErrorBoundary from './components/error-boundary/error-boundary';
 
 import CurrentUserContext from './contexts/current-user/current-user';
 
@@ -43,14 +44,16 @@ const App = () => {
                 <Header />
             </CurrentUserContext.Provider>
             <Switch>
-                <Suspense fallback={<Spinner />}>
-                    <Route exact path='/' component={HomePage} />
-                    <Route path='/shop' component={ShopPage} />
-                    <Route exact path='/checkout' component={CheckoutPage} />
-                    <Route exact path='/signin' render={() =>
-                            currentUser ? <Redirect to='/' /> : <SignInPage />
-                    } />
-                </Suspense>
+                <ErrorBoundary imageUrl={'https://i.imgur.com/A040Lxr.png'}>
+                    <Suspense fallback={<Spinner />}>
+                        <Route exact path='/' component={HomePage} />
+                        <Route path='/shop' component={ShopPage} />
+                        <Route exact path='/checkout' component={CheckoutPage} />
+                        <Route exact path='/signin' render={() =>
+                                currentUser ? <Redirect to='/' /> : <SignInPage />
+                        } />
+                    </Suspense>
+                </ErrorBoundary>
             </Switch>
         </div>
     );
