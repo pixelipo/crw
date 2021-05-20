@@ -1,5 +1,5 @@
 import React, { useState, useEffect, lazy, Suspense } from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 
 import './App.scss';
 
@@ -39,7 +39,7 @@ const App = () => {
     }, []);
 
     return (
-        <div>
+        <BrowserRouter>
             <CurrentUserContext.Provider value={currentUser}>
                 <Header />
             </CurrentUserContext.Provider>
@@ -55,7 +55,7 @@ const App = () => {
                     </Suspense>
                 </ErrorBoundary>
             </Switch>
-        </div>
+        </BrowserRouter>
     );
 }
 

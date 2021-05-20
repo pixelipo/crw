@@ -1,7 +1,7 @@
-import React, {useContext} from 'react';
-import {Link} from 'react-router-dom';
-import {auth} from '../../firebase/firebase.utils';
-import {useReactiveVar} from '@apollo/client';
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { auth } from '../../firebase/firebase.utils';
+import { useReactiveVar } from '@apollo/client';
 
 import CrownIcon from '../icons/crown';
 import CartIcon from '../icons/cart';
